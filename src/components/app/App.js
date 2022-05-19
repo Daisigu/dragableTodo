@@ -35,8 +35,8 @@ function App() {
           luminosity: 'light'
         }),
         defaultPos: {
-          x: Math.random() * 580,
-          y: getRandomInt(-63, -580)
+          x: Math.random() * 750,
+          y: getRandomInt(-363, -580)
         }
       }
       setItems((items) => [...items, newItem])
@@ -105,6 +105,7 @@ function App() {
       <div className="wrapper">
         <input
           value={item}
+          maxlength="250"
           type='text'
           placeholder="Enter something"
           onKeyPress={(e) => KeyPress(e)}
