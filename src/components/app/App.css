@@ -1,5 +1,6 @@
 .wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -28,6 +29,9 @@ input {
     border: 1px solid whitesmoke;
     color: whitesmoke;
     margin-left: 10px;
+}
+.tittle{
+    color: white;
 }
 
 .button:hover {

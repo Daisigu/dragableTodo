@@ -103,6 +103,8 @@ function App() {
   return (
     <div className="App">
       <div className="wrapper">
+        <h1 className="tittle mb-5">Notes app</h1>
+        <div className="content">
         <input
           value={item}
           maxlength="250"
@@ -123,6 +125,8 @@ function App() {
           Delete all
         </button>
 
+        </div>
+       
       </div>
       {
         items.map((item, index) => {
