@@ -40,6 +40,10 @@ function App() {
     }
   }
 
+  
+
+
+
   const deleteNode = (id) => {
 
     /*   setItems(items.filter((item) => item.id !== id)) */
@@ -65,6 +69,31 @@ function App() {
   const deleteAll = () => {
     setItems([])
     setModalActive(false)
+  }
+  const closePopup = ()=>{
+    setModalActive(false)
+  }
+  function EmptyNodes(items) {
+    if (items.items.length===0) {
+      return  (
+        <React.Fragment>
+          <h1>There are no notes to delete</h1>
+          <button className="button mt-3" onClick={closePopup}>Ok</button>
+        </React.Fragment>
+        
+      )
+    }
+      return (
+        <React.Fragment>
+            <h2>Are you sure you want to delete all notes?</h2>
+        <button className="button mt-3" onClick={deleteAll}>Yes</button>
+        <button className="button mt-3" onClick={() => setModalActive(false)}>No</button>
+        </React.Fragment>
+      
+      )
+  
+    
+   
   }
 
 
@@ -114,12 +143,15 @@ function App() {
         })
       }
       <Modal active={modalActive} setActive={setModalActive}>
-        <h2>Are you sure you want to delete all notes?</h2>
-        <button className="button mt-3" onClick={deleteAll}>Yes</button>
-        <button className="button mt-3" onClick={() => setModalActive(false)}>No</button>
+          <EmptyNodes items={items}/>
       </Modal>
     </div>
   );
 }
 
 export default App;
+
+
+/*   <h2>Are you sure you want to delete all notes?</h2>
+        <button className="button mt-3" onClick={deleteAll}>Yes</button>
+        <button className="button mt-3" onClick={() => setModalActive(false)}>No</button> */
