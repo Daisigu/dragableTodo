@@ -121,6 +121,7 @@ function App() {
         items.map((item, index) => {
           return (
             <Draggable
+              bounds={"parent"}
               onStop={(_, data) => {
                 updatePos(data, index)
               }}
