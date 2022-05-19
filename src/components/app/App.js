@@ -80,11 +80,11 @@ function App() {
         ></input>
 
         <button
-          className="enter"
+          className="button"
           onClick={newItem}
         >Enter</button>
         <button
-          className="enter"
+          className="button"
           onClick={() => setModalActive(true)}
         >
           Delete all
@@ -115,8 +115,8 @@ function App() {
       }
       <Modal active={modalActive} setActive={setModalActive}>
         <h2>Are you sure you want to delete all notes?</h2>
-        <button className="enter mt-3" onClick={deleteAll}>Yes</button>
-        <button className="enter mt-3" onClick={() => setModalActive(false)}>No</button>
+        <button className="button mt-3" onClick={deleteAll}>Yes</button>
+        <button className="button mt-3" onClick={() => setModalActive(false)}>No</button>
       </Modal>
     </div>
   );
