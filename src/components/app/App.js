@@ -8,18 +8,19 @@ import './App.css';
 
 function App() {
 
-  const [modalActive, setModalActive] = useState(false)
-  const [item, setItem] = useState('')
-  const [items, setItems] = useState(
+  const [deleteModalActive, setDeleteModalActive] = useState(false) //State of Delete modal
+  const [enterModalActive, setEnterModalActive] = useState(false) // State of Enter Modal
+  const [item, setItem] = useState('') 
+  const [items, setItems] = useState( 
     JSON.parse(localStorage.getItem('items')) || []
   )
 
-  useEffect(() => {
+  useEffect(() => {    
     localStorage.setItem('items', JSON.stringify(items))
   }, [items])
 
 
-  const newItem = () => {
+  const newItem = () => {   //Create new item
     if (item.trim() !== '') {
       const newItem = {
         id: uuidv4(),
@@ -35,7 +36,7 @@ function App() {
       setItems((items) => [...items, newItem])
       setItem('')
     } else {
-      alert('Enter something')
+      setEnterModalActive(true)
       setItem('')
     }
   }
@@ -44,21 +45,20 @@ function App() {
 
 
 
-  const deleteNode = (id) => {
+  const deleteNode = (id) => { //Delete one Note 
 
-    /*   setItems(items.filter((item) => item.id !== id)) */
     const idx = items.findIndex((item) => item.id === id);
     const newArray = [...items.slice(0, idx), ...items.slice(idx + 1)];
     setItems(newArray)
   }
-  const updatePos = (data, index) => {
+  const updatePos = (data, index) => { //Update Position logic
 
     let newArray = [...items]
     newArray[index].defaultPos = { x: data.x, y: data.y }
     setItems(newArray)
 
   }
-  const KeyPress = (e) => {
+  const KeyPress = (e) => { //Press Enter logic
 
     const code = e.keyCode || e.which
     if (code === 13) {
@@ -66,32 +66,31 @@ function App() {
 
     }
   }
-  const deleteAll = () => {
+  const deleteAll = () => { //delete all notes function
     setItems([])
-    setModalActive(false)
+    setDeleteModalActive(false)
   }
 
-  function EmptyNotes(items) {
+  function EmptyNotes(items) { //Delete modal logic
 
     if (items.items.length === 0) {
       return (
         <React.Fragment>
           <h1>There are no notes to delete</h1>
-          <button className="button mt-3" onClick={() => setModalActive(false)}>Ok</button>
+          <button className="button mt-3" onClick={() => setDeleteModalActive(false)}>Ok</button>
         </React.Fragment>
-
       )
     }
-    
+
     return (
       <React.Fragment>
         <h2>Are you sure you want to delete all notes?</h2>
         <button className="button mt-3" onClick={deleteAll}>Yes</button>
-        <button className="button mt-3" onClick={() => setModalActive(false)}>No</button>
+        <button className="button mt-3" onClick={() => setDeleteModalActive(false)}>No</button>
       </React.Fragment>
     )
 
-    
+
   }
 
 
@@ -112,7 +111,7 @@ function App() {
         >Enter</button>
         <button
           className="button"
-          onClick={() => setModalActive(true)}
+          onClick={() => setDeleteModalActive(true)}
         >
           Delete all
         </button>
@@ -140,10 +139,14 @@ function App() {
           )
         })
       }
-      <Modal active={modalActive} setActive={setModalActive}>
+      <Modal active={deleteModalActive} setActive={setDeleteModalActive}>
         <EmptyNotes items={items} />
       </Modal>
-  
+      <Modal active={enterModalActive} setActive={setEnterModalActive}>
+        <h1>You have to enter something</h1>
+        <button className="button mt-3" onClick={() => setEnterModalActive(false)}>Ok</button>
+      </Modal>
+
     </div>
   );
 }
