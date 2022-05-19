@@ -20,6 +20,12 @@ function App() {
   }, [items])
 
 
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+  }
+
   const newItem = () => {   //Create new item
     if (item.trim() !== '') {
       const newItem = {
@@ -29,8 +35,8 @@ function App() {
           luminosity: 'light'
         }),
         defaultPos: {
-          x: Math.random() * 500,
-          y: -500
+          x: Math.random() * 580,
+          y: getRandomInt(-63, -580)
         }
       }
       setItems((items) => [...items, newItem])
