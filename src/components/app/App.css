@@ -29,7 +29,7 @@ input {
     margin-left: 10px;
 }
 
-.enter:hover {
+.button:hover {
     background: whitesmoke;
     color: #222;
     cursor: pointer;

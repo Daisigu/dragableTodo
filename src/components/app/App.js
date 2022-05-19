@@ -70,15 +70,13 @@ function App() {
     setItems([])
     setModalActive(false)
   }
-  const closePopup = ()=>{
-    setModalActive(false)
-  }
+
   function EmptyNodes(items) {
     if (items.items.length===0) {
       return  (
         <React.Fragment>
           <h1>There are no notes to delete</h1>
-          <button className="button mt-3" onClick={closePopup}>Ok</button>
+          <button className="button mt-3" onClick={()=>setModalActive(false)}>Ok</button>
         </React.Fragment>
         
       )
