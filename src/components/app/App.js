@@ -40,7 +40,7 @@ function App() {
     }
   }
 
-  
+
 
 
 
@@ -71,27 +71,27 @@ function App() {
     setModalActive(false)
   }
 
-  function EmptyNodes(items) {
-    if (items.items.length===0) {
-      return  (
-        <React.Fragment>
-          <h1>There are no notes to delete</h1>
-          <button className="button mt-3" onClick={()=>setModalActive(false)}>Ok</button>
-        </React.Fragment>
-        
-      )
-    }
+  function EmptyNotes(items) {
+
+    if (items.items.length === 0) {
       return (
         <React.Fragment>
-            <h2>Are you sure you want to delete all notes?</h2>
+          <h1>There are no notes to delete</h1>
+          <button className="button mt-3" onClick={() => setModalActive(false)}>Ok</button>
+        </React.Fragment>
+
+      )
+    }
+    
+    return (
+      <React.Fragment>
+        <h2>Are you sure you want to delete all notes?</h2>
         <button className="button mt-3" onClick={deleteAll}>Yes</button>
         <button className="button mt-3" onClick={() => setModalActive(false)}>No</button>
-        </React.Fragment>
-      
-      )
-  
+      </React.Fragment>
+    )
+
     
-   
   }
 
 
@@ -141,8 +141,9 @@ function App() {
         })
       }
       <Modal active={modalActive} setActive={setModalActive}>
-          <EmptyNodes items={items}/>
+        <EmptyNotes items={items} />
       </Modal>
+  
     </div>
   );
 }
@@ -150,6 +151,3 @@ function App() {
 export default App;
 
 
-/*   <h2>Are you sure you want to delete all notes?</h2>
-        <button className="button mt-3" onClick={deleteAll}>Yes</button>
-        <button className="button mt-3" onClick={() => setModalActive(false)}>No</button> */
